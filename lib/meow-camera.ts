@@ -2,14 +2,14 @@ import axios from "axios";
 
 const BASE_URL = "https://api.meow.camera";
 
-interface CatHouse {
+export interface CatHouse {
   id: string;
   name: string;
   englishName?: string;
   translatedName?: string;
 }
 
-interface CatHouseDetails extends CatHouse {
+export interface CatHouseDetails extends CatHouse {
   images: string[];
   subscribeCount: number;
   todayFeedCount: number;
@@ -30,8 +30,14 @@ interface CatHouseDetails extends CatHouse {
   }
 }
 
+export enum CatHouseType {
+  FEATURED  = "featured", // Featured cameras
+  RANDOM    = "random",   // Random cat houses with cats
+  TOP       = "top"       // Popular cat houses
+};
 
-const getCatHouses = async (type: string): Promise<CatHouse[]> => {
+
+export const getCatHousesByType = async (type: CatHouseType): Promise<CatHouse[]> => {
   let catHouses: CatHouse[] = [];
   try {
     const response = await axios.get(`${BASE_URL}/catHouses/${type}`);
@@ -43,23 +49,8 @@ const getCatHouses = async (type: string): Promise<CatHouse[]> => {
   }
 }
 
-// Featured cameras
-export const getFeaturedCameras = async (): Promise<CatHouse[]> => {
-  return getCatHouses("featured");
-}
 
-// Random cat houses with cats
-export const getRandomCatHouses = async (count: number): Promise<CatHouse[]> => {
-  return getCatHouses("random");
-}
-
-// Popular cat houses
-export const getPopularCatHouses = async (): Promise<CatHouse[]> => {
-  return getCatHouses("popular");
-}
-
-
-export const searchCatHouses = async (query: string): Promise<CatHouse[]> => {
+export const getCatHousesByQuery = async (query: string): Promise<CatHouse[]> => {
   try {
     const response = await axios.post(`${BASE_URL}/catHouses/search`, { query });
     return response.data;
@@ -70,7 +61,7 @@ export const searchCatHouses = async (query: string): Promise<CatHouse[]> => {
 }
 
 
-export const getCatHouseById = async (catHouseId: string): Promise<CatHouseDetails | null> => {
+export const getCatHouseDetailsById = async (catHouseId: string): Promise<CatHouseDetails | null> => {
   try {
     const response = await axios.get(`${BASE_URL}/catHouse/${catHouseId}`);
     return response.data;
@@ -78,6 +69,11 @@ export const getCatHouseById = async (catHouseId: string): Promise<CatHouseDetai
     console.error(`Error fetching cat house with ID ${catHouseId}:`, error);
     return null;
   }
+}
+
+
+export const getNameFromCatHouse = (catHouse: CatHouse): string => {
+  return catHouse.englishName ?? catHouse.translatedName ?? catHouse.name;
 }
 
 

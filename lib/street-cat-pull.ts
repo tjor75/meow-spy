@@ -6,6 +6,6 @@ export enum Camera {
   BACK = 2
 }
 
-export const getCameraUrl = (catHouseId: string, camera: Camera) => {
+export const getCameraUrl = (catHouseId: string, camera: Camera): string => {
   return `${BASE_URL}/live/${catHouseId}_${camera}.m3u8`;
 }

@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    [
+      "react-native-video",
+      {
+        "enableNotificationControls": true,
+        "androidExtensions": {
+          "useExoplayerHls": true,
+          "enableAndroidPictureInPicture": true
+        }
+      }
+    ]
+  ]
+}

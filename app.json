@@ -20,7 +20,14 @@
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#111111"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+      ],
+      "package": "com.tjor.meowspy"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
@@ -33,17 +40,31 @@
           "fonts": [
             "./assets/fonts/ZenMaruGothic/ZenMaruGothic-Regular.ttf",
             "./assets/fonts/ZenMaruGothic/ZenMaruGothic-Bold.ttf"
-          ]
+          ],
+          "android": {
+            "fonts": [
+              {
+                "fontFamily": "ZenMaruGothic-Regular",
+                "fontDefinitions": [
+                  {
+                    "path": "./assets/fonts/ZenMaruGothic/ZenMaruGothic-Regular.ttf",
+                    "weight": 400
+                  },
+                  {
+                    "path": "./assets/fonts/ZenMaruGothic/ZenMaruGothic-Bold.ttf",
+                    "weight": 700
+                  }
+                ]
+              }
+            ]
+          }
         }
       ],
       [
-        "react-native-video",
+        "expo-video",
         {
-          "enableNotificationControls": true,
-          "androidExtensions": {
-            "useExoplayerHls": true,
-            "enableAndroidPictureInPicture": true
-          }
+          "supportsBackgroundPlayback": false,
+          "supportsPictureInPicture": true
         }
       ]
     ]
