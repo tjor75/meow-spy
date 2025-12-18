@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Picker } from "@react-native-picker/picker";
-import { ThemeContext } from "../../../contexts/ThemeContext";
+import useTheme from "../../../hooks/useTheme";
 
-export function ThemeSettingsScreen() {
-  const { themePreference, setThemePreference } = useContext(ThemeContext);
+export default function ThemePicker() {
+  const { themePreference, setThemePreference } = useTheme();
 
   return (
     <Picker

@@ -4,6 +4,7 @@ import * as ScreenOrientation from "expo-screen-orientation";
 import { GlobalProvider } from "./contexts/GlobalProvider";
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
+import SettingsScreen from "./screens/SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 ScreenOrientation.unlockAsync();
@@ -15,6 +16,7 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </GlobalProvider>
   );

@@ -1,18 +1,16 @@
 import { useState } from "react";
-import { ActivityIndicator, ScrollView, TextInput, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { ActivityIndicator, ScrollView, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { CatHouse, getCatHousesByQuery } from "../../lib/meow-camera";
 import useTheme from "../../hooks/useTheme";
 import Screen from "../../components/UI/Screen";
-import Header from "../../components/UI/Header";
+import Header from "../../components/Header";
 import CatHousesList from "../../components/CatHouses/CatHousesList";
 import ExactResult from "../../components/ExactResult";
 import styles from "./styles";
 
 export default function SearchScreen() {
   const { theme } = useTheme();
-  const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -55,9 +53,6 @@ export default function SearchScreen() {
   return (
     <Screen>
       <Header>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Feather name="arrow-left" size={24} color={theme.color} />
-        </TouchableOpacity>
         <TextInput
           style={[styles.searchField, { color: theme.color, backgroundColor: theme.altBackground }]}
           onChangeText={setSearchQuery}

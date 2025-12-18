@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../../styles/globalColors";
+import { globalGaps } from "../../styles/globalColors";
 
 const styles = StyleSheet.create({
   header: {

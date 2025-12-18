@@ -5,28 +5,31 @@ import { CatHouseType } from "../../lib/meow-camera";
 import useOrientationLock from "../../hooks/useOrientationLock";
 import useTheme from "../../hooks/useTheme";
 import useCatHousesGallery from "../../hooks/useCatHousesGallery";
-import Header from "../../components/UI/Header";
+import Screen from "../../components/UI/Screen";
+import Header from "../../components/Header";
 import MText from "../../components/UI/MText";
 import CameraPlayerExpo from "../../components/UI/CameraPlayerExpo";
 import CatHouseInfo from "../../components/CatHouseInfo";
 import CatHousesSaved from "../../components/CatHouses/CatHousesSaved";
 import CatHousesType from "../../components/CatHouses/CatHousesType";
 import styles from "./styles";
-import Screen from "../../components/UI/Screen";
 
 export default function HomeScreen() {
+  const navigation = useNavigation();
   const isLandscape = useOrientationLock();
   const { theme } = useTheme();
-  const navigation = useNavigation();
   const { featuredCatHousesState, randomCatHousesState, topCatHousesState } = useCatHousesGallery();
 
   return (
     <Screen>
-      <Header>
+      <Header goBack={false}>
         <MText style={[styles.headerText, { color: theme.color }]}>Meow Spy</MText>
-        <View>
+        <View style={styles.headerIcons}>
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Feather name="search" size={24} color={theme.color} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate("Settings")}>
+            <Feather name="settings" size={24} color={theme.color} />
           </TouchableOpacity>
         </View>
       </Header>

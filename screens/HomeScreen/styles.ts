@@ -9,6 +9,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
   },
+  headerIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: globalGaps.medium,
+  },
   containerPortrait: {
     flex: 1,
     flexDirection: 'column',
