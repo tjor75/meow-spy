@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ActivityIndicator, ScrollView, TextInput, TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { CatHouse, getCatHousesByQuery } from "../../lib/meow-camera";
 import useTheme from "../../hooks/useTheme";
+import Screen from "../../components/UI/Screen";
 import Header from "../../components/UI/Header";
 import CatHousesList from "../../components/CatHouses/CatHousesList";
 import ExactResult from "../../components/ExactResult";
@@ -53,7 +53,7 @@ export default function SearchScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.backgroundColor }}>
+    <Screen>
       <Header>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Feather name="arrow-left" size={24} color={theme.color} />
@@ -77,6 +77,6 @@ export default function SearchScreen() {
           </>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </Screen>
   );
 }

@@ -1,5 +1,4 @@
 import { ScrollView, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { CatHouseType } from "../../lib/meow-camera";
@@ -13,6 +12,7 @@ import CatHouseInfo from "../../components/CatHouseInfo";
 import CatHousesSaved from "../../components/CatHouses/CatHousesSaved";
 import CatHousesType from "../../components/CatHouses/CatHousesType";
 import styles from "./styles";
+import Screen from "../../components/UI/Screen";
 
 export default function HomeScreen() {
   const isLandscape = useOrientationLock();
@@ -21,7 +21,7 @@ export default function HomeScreen() {
   const { featuredCatHousesState, randomCatHousesState, topCatHousesState } = useCatHousesGallery();
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.backgroundColor }}>
+    <Screen>
       <Header>
         <MText style={[styles.headerText, { color: theme.color }]}>Meow Spy</MText>
         <View>
@@ -57,6 +57,6 @@ export default function HomeScreen() {
           />
         </ScrollView>
       </View>
-    </SafeAreaView>
+    </Screen>
   );
 }
