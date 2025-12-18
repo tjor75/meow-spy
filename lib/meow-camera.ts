@@ -36,6 +36,11 @@ export enum CatHouseType {
   TOP       = "top"       // Popular cat houses
 };
 
+export interface MeowCameraError {
+  status: string;
+  message: string;
+};
+
 
 export const getCatHousesByType = async (type: CatHouseType): Promise<CatHouse[]> => {
   let catHouses: CatHouse[] = [];
@@ -61,10 +66,13 @@ export const getCatHousesByQuery = async (query: string): Promise<CatHouse[]> =>
 }
 
 
-export const getCatHouseDetailsById = async (catHouseId: string): Promise<CatHouseDetails | null> => {
+export const getCatHouseDetailsById = async (catHouseId: string): Promise<CatHouseDetails | MeowCameraError | null> => {
   try {
     const response = await axios.get(`${BASE_URL}/catHouse/${catHouseId}`);
-    return response.data;
+    if (response.data.status)
+      return response.data as MeowCameraError;
+    else
+      return { ...response.data, id: catHouseId } as CatHouseDetails;
   } catch (error) {
     console.error(`Error fetching cat house with ID ${catHouseId}:`, error);
     return null;

@@ -5,10 +5,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  sidebar: {
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  containerPortrait: {
     flex: 1,
-    paddingHorizontal: 16,
+    flexDirection: 'column',
+  },
+  containerLandscape: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  cameraLandscape: {
+    display: 'none',
+    flex: 2, // 2/3 of the width in landscape
+  },
+  sidebar: {
+    flex: 3,
+    paddingHorizontal: globalGaps.large,
     marginVertical: 12,
+  },
+  sidebarLandscape: {
+    flex: 1,
+  },
+  sidebarPortrait: {
+    flex: 4,
   },
 });
 

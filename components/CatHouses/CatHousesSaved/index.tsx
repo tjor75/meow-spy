@@ -1,8 +1,8 @@
-import useCatHouse from "../../../hooks/useCatHouse";
+import useCatHousesGallery from "../../../hooks/useCatHousesGallery";
 import CatHousesGallery from "../CatHousesGallery";
 
 export default function CatHousesSaved() {
-  const { catHousesSaved } = useCatHouse();
+  const { catHousesSaved } = useCatHousesGallery();
 
   return (
     <CatHousesGallery

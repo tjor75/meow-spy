@@ -6,7 +6,8 @@ import MText from "../UI/MText";
 import LocalizedCurrentTime from "./LocalizedCurrentTime";
 import Viewers from "./Viewers";
 import FoodLevels from "./FoodLevels";
-import SavedButton from "../UI/SavedButton";
+import ShareButton from "../UI/ShareButton";
+import SaveButton from "../UI/SaveButton";
 import styles from "./styles";
 
 export default function CatHouseInfo() {
@@ -17,7 +18,9 @@ export default function CatHouseInfo() {
       <View>
         <View style={styles.row}>
           <MText style={styles.name}>{getNameFromCatHouse(catHouseDetails)}</MText>
-          <SavedButton catHouseDetails={catHouseDetails} />
+          <View style={styles.rowRight}>
+            <SaveButton />
+          </View>
         </View>
         <View style={styles.row}>
           <LocalizedCurrentTime timeZone={catHouseDetails.timeZone} />

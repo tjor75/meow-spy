@@ -22,12 +22,3 @@ export const getSavedCatHouses = async (): Promise<CatHouse[]> => {
 export const setSavedCatHouses = async (catHouses: CatHouse[]): Promise<void> => {
   await storage.setData("savedCatHouses", JSON.stringify(catHouses));
 };
-
-export const createCatHouseFromDetails = (id: string, details: CatHouseDetails): CatHouse => {
-  return {
-    id,
-    name: details.name,
-    englishName: details.englishName,
-    translatedName: details.translatedName,
-  };
-};

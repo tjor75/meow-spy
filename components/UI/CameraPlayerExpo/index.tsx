@@ -3,37 +3,46 @@ import { useEvent } from "expo";
 import { ActivityIndicator, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useVideoPlayer, VideoView } from "expo-video";
-import { OrientationLock } from "expo-screen-orientation";
 import { getCameraUrl } from "../../../lib/street-cat-pull";
 import useCatHouse from "../../../hooks/useCatHouse";
 import MText from "../MText";
 import styles from "./styles";
 
-export default function CameraPlayerExpo({ orientationLock }: { orientationLock: OrientationLock }) {
-  const { catHouseId, catHouseDetails, camera } = useCatHouse();
+export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean }) {
+  const { catHouseId, catHouseDetails, camera, error, setError } = useCatHouse();
   const player = useVideoPlayer(null);
 
-  const cameraUrl = getCameraUrl(catHouseId, camera);
-  console.log("Camera URL:", cameraUrl);
+  console.log("Rendering CameraPlayerExpo with catHouseId:", catHouseId, "camera:", camera);
 
   const [loading, setLoading] = useState<boolean>(true);
-  const { status, error } = useEvent(player, "statusChange", { status: player.status });
+  const { status, error: vidError } = useEvent(player, "statusChange", { status: player.status });
 
-  const isLandscape =
-    orientationLock >= OrientationLock.LANDSCAPE &&
-    orientationLock <= OrientationLock.LANDSCAPE_RIGHT;
+  const cameraUrl = getCameraUrl(catHouseId, camera);
 
   const loadVideo = () => {
-    player.replace(cameraUrl);
-    player.play();
+    if (!catHouseDetails) return;
+    setError(null);
+    player.replaceAsync(cameraUrl)
+      .then(() => {
+        player.play();
+        console.log("Video loaded:", cameraUrl)
+      });
   };
 
-  useEffect(loadVideo, [cameraUrl]);
+  useEffect(() => loadVideo, [cameraUrl]);
 
   useEffect(() => {
-    console.log("Player status changed:", status, error);
+    console.log("Player status changed:", status, vidError);
     setLoading(status === "idle" || status === "loading");
   }, [status]);
+
+  useEffect(() => {
+    if (vidError) {
+      setError(null);
+      console.log("Video player error:", vidError);
+      setError(vidError.message);
+    }
+  }, [vidError]);
 
   return (
     <View style={[
@@ -45,12 +54,15 @@ export default function CameraPlayerExpo({ orientationLock }: { orientationLock:
         player={player}
         allowsFullscreen={true}
         allowsPictureInPicture={true}
+        startsPictureInPictureAutomatically={true}
+        requiresLinearPlayback={true}
       />
       {error ? (
         <TouchableOpacity onPress={loadVideo} style={styles.overlay}>
-          <Feather name="refresh-ccw" size={24} color="white" />
-          <MText style={styles.errorText}>{`Error code: ${status.toString()}`}</MText>
-          <MText style={styles.errorText}>Tap to retry.</MText>
+          {catHouseDetails && (
+            <Feather name="refresh-ccw" size={24} color="white" />
+          )}
+          <MText style={styles.errorText}>{`Error code: ${error}`}</MText>
         </TouchableOpacity>
       ) : (
         (catHouseDetails === null || loading) && (

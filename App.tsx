@@ -1,29 +1,21 @@
-import { SafeAreaView } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
-import { GlobalProvider } from "./contexts/GlobalContext";
-import useTheme from "./hooks/useTheme";
+import * as ScreenOrientation from "expo-screen-orientation";
+import { GlobalProvider } from "./contexts/GlobalProvider";
 import HomeScreen from "./screens/HomeScreen";
+import SearchScreen from "./screens/SearchScreen";
 
 const Stack = createNativeStackNavigator();
+ScreenOrientation.unlockAsync();
 
 export default function App() {
-  const { theme } = useTheme();
-
   return (
-    <>
+    <GlobalProvider>
       <StatusBar style="auto" />
-      <GlobalProvider>
-        <SafeAreaView style={{ flex: 1, backgroundColor: theme.backgroundColor }}>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="Home"
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </SafeAreaView>
-      </GlobalProvider>
-    </>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Search" component={SearchScreen} />
+      </Stack.Navigator>
+    </GlobalProvider>
   );
 }
