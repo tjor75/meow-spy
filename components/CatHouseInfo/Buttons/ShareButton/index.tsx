@@ -23,16 +23,16 @@ export default function ShareButton() {
     setModalVisible(!modalVisible);
   };
 
-  const openJieMao = () => {
-    const url = `hellopetlinkshare://?autoJump=1&blockType=1&shareType=3&scene=2006&_sdk_=umeng&businessId=${catHouseId}`;
-    console.log("Opening JieMao URL:", url);
+  const openPurrrr = () => {
+    const url = `hellopurrrr://hellobike.com/pet/secondflow?cathouseId=${catHouseId}`;
+    console.log("Opening Purrrr URL:", url);
     Linking.openURL(url);
     toggleModal();
   };
 
-  const openPurrrr = () => {
-    const url = `hellopurrrr://hellobike.com/pet/secondflow?cathouseId=${catHouseId}`;
-    console.log("Opening Purrrr URL:", url);
+  const openJieMao = () => {
+    const url = `hellopetlinkshare://?autoJump=1&blockType=1&shareType=3&scene=2006&_sdk_=umeng&businessId=${catHouseId}`;
+    console.log("Opening JieMao URL:", url);
     Linking.openURL(url);
     toggleModal();
   };
@@ -59,11 +59,11 @@ export default function ShareButton() {
       <MModal visible={modalVisible} setVisible={setModalVisible}>
         <MText style={{ color: theme.color }}>Open with the originals</MText>
         <MText style={{ color: theme.color, fontSize: 14 }}>Feed the cats and unlock more features</MText>
-        <MButton style={styles.jmpButton} onPress={openJieMao}>
-          <MText style={styles.jmpText}>Open in JieMao</MText>
-        </MButton>
         <MButton style={styles.jmpButton} onPress={openPurrrr}>
           <MText style={styles.jmpText}>Open in Purrrr</MText>
+        </MButton>
+        <MButton style={styles.jmpButton} onPress={openJieMao}>
+          <MText style={styles.jmpText}>Open in JieMao</MText>
         </MButton>
         <Divider />
         <MButton style={styles.meowCameraButton} onPress={openMeowCamera}>

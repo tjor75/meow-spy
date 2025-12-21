@@ -6,7 +6,7 @@ import MText from "../../components/UI/MText";
 import ScrollContainer from "../../components/UI/ScrollContainer";
 import ThemePicker from "../../components/UI/ThemePicker";
 import Divider from "../../components/UI/Divider";
-import styles from "./styles";
+import About from "../../components/UI/About";
 
 export default function SettingsScreen() {
   const { theme } = useTheme();
@@ -22,11 +22,7 @@ export default function SettingsScreen() {
           <ThemePicker />
         </View>
         <Divider />
-        <View>
-          <MText style={styles.aboutText}>Meow Spy</MText>
-          <MText style={styles.aboutText}>Powered by Meow.camera & Purrrr</MText>
-          <MText style={styles.aboutText}>Version Alpha 1.0.0</MText>
-        </View>
+        <About />
       </ScrollContainer>
     </Screen>
   );
