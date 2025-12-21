@@ -21,11 +21,15 @@ export default function About() {
         <TouchableOpacity onPress={openWebsite}>
           <MText style={styles.aboutText}>App by Tjor</MText>
         </TouchableOpacity>
+        -
         <TouchableOpacity onPress={openRepository}>
           <MText style={styles.aboutText}>Star on GitHub</MText>
         </TouchableOpacity>
       </View>
-      <Divider style={{ borderColor: 'transparent' }} />
+      <Divider />
+      <MText style={styles.aboutText}>Using font Zen Maru Gothic by Yoshimichi Ohira (OSL)</MText>
+      <MText style={styles.aboutText}>Icon made using Expo-Icon-Builder + Twemoji</MText>
+      <Divider />
       <MText style={styles.aboutText}>This project has been developed without commercial purposes as a hobby. This app is NOT affiliated with Guangxi Ha Chong Network Technology Co., Ltd.</MText>
     </View>
   );
