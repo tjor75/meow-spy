@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useEvent } from "expo";
-import { ActivityIndicator, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, TouchableOpacity, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { getCameraUrl } from "../../../lib/street-cat-pull";
@@ -19,17 +19,25 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
 
   const cameraUrl = getCameraUrl(catHouseId, camera);
 
-  const loadVideo = () => {
-    if (!catHouseDetails) return;
+  const loadVideo = async () => {
+    if (!cameraUrl) {
+      setError("No camera URL available");
+      return;
+    }
     setError(null);
-    player.replaceAsync(cameraUrl)
-      .then(() => {
-        player.play();
-        console.log("Video loaded:", cameraUrl)
-      });
+    try {
+      await player.replaceAsync(cameraUrl);
+      player.play();
+      console.log("Video loaded:", cameraUrl);
+    } catch (e: any) {
+      console.log("Failed to load video:", e?.message ?? e);
+      setError(e?.message ?? "Failed to load video");
+    }
   };
 
-  useEffect(() => loadVideo, [cameraUrl]);
+  useEffect(() => {
+    loadVideo();
+  }, [cameraUrl]);
 
   useEffect(() => {
     console.log("Player status changed:", status, vidError);
@@ -70,9 +78,17 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
           <MText style={styles.errorText}>{error}</MText>
         </TouchableOpacity>
       ) : (
-        (catHouseDetails === null || loading) && (
+        loading && (
           <View style={styles.overlay}>
-            <ActivityIndicator size="large" />
+            {catHouseDetails && catHouseDetails.images?.length > 0 ? (
+              <Image
+                source={{ uri: catHouseDetails.images[0] }}
+                style={{ width: '100%', height: '100%' }}
+                resizeMode="cover"
+              />
+            ) : (
+              <ActivityIndicator size="large" />
+            )}
           </View>
         )
       )}
