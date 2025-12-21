@@ -5,6 +5,7 @@ import { GlobalProvider } from "./contexts/GlobalProvider";
 import HomeScreen from "./screens/HomeScreen";
 import SearchScreen from "./screens/SearchScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import NoInternetBanner from "./components/UI/NoInternetBanner";
 
 const Stack = createNativeStackNavigator();
 ScreenOrientation.unlockAsync();
@@ -18,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
+      <NoInternetBanner />
     </GlobalProvider>
   );
 }
