@@ -2,7 +2,7 @@
   "expo": {
     "name": "Meow Spy",
     "slug": "meow-spy",
-    "version": "1.0.0",
+    "version": "1.0.0-alpha",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
@@ -27,7 +27,7 @@
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ],
-      "package": "com.tjor.meowspy"
+      "package": "sh.now.tjor.meowspy"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
