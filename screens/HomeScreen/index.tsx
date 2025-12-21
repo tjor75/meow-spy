@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
 import { CatHouseType } from "../../lib/meow-camera";
@@ -6,6 +6,7 @@ import useOrientationLock from "../../hooks/useOrientationLock";
 import useTheme from "../../hooks/useTheme";
 import useCatHousesGallery from "../../hooks/useCatHousesGallery";
 import Screen from "../../components/UI/Screen";
+import ScrollContainer from "../../components/UI/ScrollContainer";
 import Header from "../../components/Header";
 import MText from "../../components/UI/MText";
 import CameraPlayerExpo from "../../components/UI/CameraPlayerExpo";
@@ -22,8 +23,8 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <Header goBack={false}>
-        <MText style={[styles.headerText, { color: theme.color }]}>Meow Spy</MText>
+      <Header style={{ justifyContent: 'space-between' }} goBack={false}>
+        <MText style={styles.headerText}>Meow Spy</MText>
         <View style={styles.headerIcons}>
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
             <Feather name="search" size={24} color={theme.color} />
@@ -34,13 +35,10 @@ export default function HomeScreen() {
         </View>
       </Header>
       <View style={isLandscape ? styles.containerLandscape : styles.containerPortrait}>
-        <View style={isLandscape ? styles.cameraLandscape : { flex: 1 }}>
-          <CameraPlayerExpo isLandscape={isLandscape} />
-        </View>
-        <ScrollView style={[
-          styles.sidebar,
-          isLandscape ? styles.sidebarLandscape : styles.sidebarPortrait
-        ]}>
+        <CameraPlayerExpo isLandscape={isLandscape} />
+        <ScrollContainer
+          style={isLandscape ? styles.sidebarLandscape : styles.sidebarPortrait}
+        >
           <CatHouseInfo />
           <CatHousesSaved />
           <CatHousesType
@@ -58,7 +56,7 @@ export default function HomeScreen() {
             type={CatHouseType.TOP}
             reactState={topCatHousesState}
           />
-        </ScrollView>
+        </ScrollContainer>
       </View>
     </Screen>
   );

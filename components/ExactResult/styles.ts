@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../styles/globalColors";
+import { globalGaps } from "../../styles/globalGaps";
 
 const styles = StyleSheet.create({
   container: {
@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: globalGaps.medium,
   },
-  headerStyle: {
+  header: {
     marginBottom: 8
   },
-  textStyle: {
+  text: {
     fontSize: 20,
   },
 });

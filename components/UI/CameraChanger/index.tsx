@@ -22,8 +22,11 @@ export default function CameraChanger() {
             key={cameraKey}
             onPress={() => setCamera(cameraValue)}
             backgroundColor={cameraValue === camera ? globalColors.blue : undefined}
-            style={styles.button}>
-            <MText>{cameraKey}</MText>
+            style={styles.button}
+          >
+            <MText style={cameraValue === camera ? { color: "#fff" } : undefined}>
+              {cameraKey}
+            </MText>
           </MButton>
         );
       })}

@@ -4,15 +4,16 @@ const styles = StyleSheet.create({
   cameraContainer: {
     position: 'relative',
     backgroundColor: 'black',
-    width: '100%',
-    height: '100%',
+    //width: '100%',
+    //height: '100%',
   },
   cameraContainerLandscape: {
     flex: 2,
   },
   cameraContainerPortrait: {
-    flex: 1,
+    height: 250,
   },
+
   cameraPlayer: {
     width: '100%',
     height: '100%',

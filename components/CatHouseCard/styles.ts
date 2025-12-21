@@ -1,15 +1,19 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../../styles/globalColors";
+import { globalGaps } from "../../styles/globalGaps";
 
 const styles = StyleSheet.create({
   button: {
-    display: 'flex',
     flexDirection: 'row',
+    // flexWrap: 'wrap',
     justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    gap: globalGaps.medium,
+    alignItems: 'center',
+    gap: globalGaps.small,
   },
-  id: {
+  nameText: {
+    flex: 1,
+    flexShrink: 1,
+  },
+  idText: {
     fontStyle: 'italic',
     fontSize: 12,
   },

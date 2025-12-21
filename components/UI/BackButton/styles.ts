@@ -2,16 +2,9 @@ import { StyleSheet } from "react-native";
 import { globalGaps } from "../../../styles/globalGaps";
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    gap: globalGaps.small,
+  backButton: {
+    marginRight: globalGaps.small,
   },
-  button: {
-    paddingVertical: 4,
-    borderRadius: 8,
-    alignItems: 'center',
-    flex: 1,
-  }
 });
 
 export default styles;

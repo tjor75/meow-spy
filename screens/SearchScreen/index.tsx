@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { ActivityIndicator, ScrollView, TextInput } from "react-native";
+import { ActivityIndicator, TextInput } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { CatHouse, getCatHousesByQuery } from "../../lib/meow-camera";
 import useTheme from "../../hooks/useTheme";
 import Screen from "../../components/UI/Screen";
 import Header from "../../components/Header";
+import ScrollContainer from "../../components/UI/ScrollContainer";
 import CatHousesList from "../../components/CatHouses/CatHousesList";
 import ExactResult from "../../components/ExactResult";
 import styles from "./styles";
@@ -54,7 +55,7 @@ export default function SearchScreen() {
     <Screen>
       <Header>
         <TextInput
-          style={[styles.searchField, { color: theme.color, backgroundColor: theme.altBackground }]}
+          style={[styles.searchField, { color: theme.color, backgroundColor: theme.buttonBg }]}
           onChangeText={setSearchQuery}
           onSubmitEditing={search}
           value={searchQuery}
@@ -62,16 +63,16 @@ export default function SearchScreen() {
           enterKeyHint="search"
         />
       </Header>
-      <ScrollView>
+      <ScrollContainer>
         {loading && <ActivityIndicator size="large" style={{ marginTop: 20 }} />}
         {error && <Feather name="alert-circle" size={24} color="red" style={{ marginTop: 20 }} />}
         {hadLastQuery && !(loading || error) && (
           <>
             <ExactResult catHouse={exactResult} />
-            <CatHousesList catHouses={searchResults} goBack={true} />
+            {(!exactResult || searchResults.length !== 0) && <CatHousesList catHouses={searchResults} goBack={true} />}
           </>
         )}
-      </ScrollView>
+      </ScrollContainer>
     </Screen>
   );
 }

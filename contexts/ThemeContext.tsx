@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { ColorSchemeName } from "react-native";
-import { getThemePreference, resolveTheme } from "../utils/theme";
+import { getThemePreference, resolveColorScheme, resolveTheme } from "../utils/theme";
 import { themeColors } from "../styles/themeColors";
 
 export enum Theme {
@@ -9,20 +9,23 @@ export enum Theme {
 }
 
 type ThemeContextType = {
-  theme: any;
   themePreference: ColorSchemeName;
   setThemePreference: (preference: ColorSchemeName) => void;
+  theme: any;
+  colorScheme: any;
 }
 
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: {},
   themePreference: null,
   setThemePreference: () => {},
+  theme: {},
+  colorScheme: {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [themePreference, setThemePreference] = useState<ColorSchemeName>(null);
   const theme = resolveTheme(themePreference) === Theme.DARK ? themeColors.dark : themeColors.light;
+  const colorScheme = resolveColorScheme() === Theme.DARK ? themeColors.dark : themeColors.light;
 
   console.log("Current theme preference:", themePreference);
 
@@ -31,7 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, themePreference, setThemePreference }}>
+    <ThemeContext.Provider value={{ themePreference, setThemePreference, theme, colorScheme }}>
       {children}
     </ThemeContext.Provider>
   );

@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../styles/globalColors";
+import { globalGaps } from "../../styles/globalGaps";
 
 const styles = StyleSheet.create({
   about: {
-    borderTopColor: '#ccc',
     borderTopWidth: 1,
     marginTop: globalGaps.medium,
     paddingTop: globalGaps.medium,

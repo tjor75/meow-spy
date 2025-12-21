@@ -3,15 +3,12 @@ import { globalGaps } from "../../../styles/globalGaps";
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    gap: globalGaps.small,
-  },
-  button: {
-    paddingVertical: 4,
-    borderRadius: 8,
-    alignItems: 'center',
     flex: 1,
-  }
+  },
+  contentContainer: {
+    paddingHorizontal: globalGaps.large,
+    paddingVertical: 12,
+  },
 });
 
 export default styles;

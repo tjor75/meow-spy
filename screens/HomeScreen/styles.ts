@@ -1,10 +1,7 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../styles/globalColors";
+import { globalGaps } from "../../styles/globalGaps";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   headerText: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -14,28 +11,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: globalGaps.medium,
   },
-  containerPortrait: {
-    flex: 1,
-    flexDirection: 'column',
-  },
+
   containerLandscape: {
     flex: 1,
     flexDirection: 'row',
   },
-  cameraLandscape: {
-    display: 'none',
-    flex: 2, // 2/3 of the width in landscape
+  containerPortrait: {
+    flex: 1,
+    flexDirection: 'column',
   },
-  sidebar: {
-    flex: 3,
-    paddingHorizontal: globalGaps.large,
-    marginVertical: 12,
-  },
+
   sidebarLandscape: {
     flex: 1,
   },
   sidebarPortrait: {
-    flex: 4,
+    flex: 3,
   },
 });
 

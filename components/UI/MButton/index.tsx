@@ -4,18 +4,19 @@ import styles from "./styles";
 
 export type MButtonProps = {
   children: React.ReactNode;
-  onPress: () => void;
-  backgroundColor?: string;
-  squared?: boolean;
   style?: StyleProp<any>;
+  backgroundColor?: string;
+  onPress: () => void;
+  squared?: boolean;
   [key: string]: any;
 };
 
-export default function MButton({ children, onPress, backgroundColor, squared, style, ...props }: MButtonProps) {
+export default function MButton({ children, backgroundColor, onPress, squared, ...props }: MButtonProps) {
   const { theme } = useTheme();
 
   return (
     <TouchableOpacity
+      {...props}
       onPress={onPress}
       style={[
         styles.button,
@@ -23,9 +24,8 @@ export default function MButton({ children, onPress, backgroundColor, squared, s
           backgroundColor: backgroundColor ?? theme.buttonBg,
           paddingHorizontal: squared ? 4 : 7
         },
-        { ...style }
+        props.style
       ]}
-      {...props}
     >
       {children}
     </TouchableOpacity>

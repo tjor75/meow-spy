@@ -1,17 +1,17 @@
 import { View } from "react-native";
 import { CatHouse } from "../../lib/meow-camera";
 import MText from "../UI/MText";
-import CatHouseCard from "../CatHouses/CatHouseCard";
+import CatHouseCard from "../CatHouseCard";
 import styles from "./styles";
 
-export default function ExactResult({ catHouse = null }: { catHouse?: CatHouse }) {
+export default function ExactResult({ catHouse }: { catHouse?: CatHouse }) {
   if (catHouse)
     return (
       <View style={styles.container}>
-        <MText style={styles.headerStyle}>Exact match found</MText>
+        <MText style={styles.header}>Exact match found</MText>
         <CatHouseCard
           catHouse={catHouse}
-          textStyle={styles.textStyle}
+          textStyle={styles.text}
           goBack={true}
         />
       </View>

@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { CatHouse } from "../../../lib/meow-camera";
 import MText from "../../UI/MText";
-import CatHouseCard from "../CatHouseCard";
+import CatHouseCard from "../../CatHouseCard";
 import styles from "./styles";
 
 export default function CatHousesList({ catHouses, goBack = false }: { catHouses: CatHouse[], goBack?: boolean }) {

@@ -1,5 +1,5 @@
-import { ActivityIndicator, View } from "react-native";
 import { useEffect, useState } from "react";
+import { ActivityIndicator, View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import { CatHouse } from "../../../lib/meow-camera";
 import useTheme from "../../../hooks/useTheme";

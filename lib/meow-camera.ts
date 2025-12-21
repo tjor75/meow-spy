@@ -61,7 +61,7 @@ export const getCatHousesByQuery = async (query: string): Promise<CatHouse[]> =>
     return response.data;
   } catch (error) {
     console.error(`Error searching cat houses with query "${query}":`, error);
-    return [];
+    throw error;
   }
 }
 

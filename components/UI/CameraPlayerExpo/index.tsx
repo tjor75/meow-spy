@@ -37,11 +37,16 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
   }, [status]);
 
   useEffect(() => {
-    if (vidError) {
-      setError(null);
-      console.log("Video player error:", vidError);
-      setError(vidError.message);
-    }
+    if (!vidError) return;
+    setError(null);
+    console.log("Video player error:", vidError);
+
+    /* if (vidError.message.includes("unexpected end of stream")) {
+      loadVideo();
+      return;
+    } */
+
+    setError(vidError.message);
   }, [vidError]);
 
   return (
@@ -62,7 +67,7 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
           {catHouseDetails && (
             <Feather name="refresh-ccw" size={24} color="white" />
           )}
-          <MText style={styles.errorText}>{`Error code: ${error}`}</MText>
+          <MText style={styles.errorText}>{error}</MText>
         </TouchableOpacity>
       ) : (
         (catHouseDetails === null || loading) && (

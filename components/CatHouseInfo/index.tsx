@@ -6,7 +6,7 @@ import MText from "../UI/MText";
 import LocalizedCurrentTime from "./LocalizedCurrentTime";
 import Viewers from "./Viewers";
 import FoodLevels from "./FoodLevels";
-import ShareButton from "../UI/ShareButton";
+// import ShareButton from "../UI/ShareButton";
 import SaveButton from "../UI/SaveButton";
 import styles from "./styles";
 

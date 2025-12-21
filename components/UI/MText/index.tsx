@@ -1,18 +1,16 @@
 import { Text } from "react-native";
 import useTheme from "../../../hooks/useTheme";
+import styles from "./styles";
 
-export default function MText({ children, style, ...props }: React.ComponentProps<typeof Text>) {
+export default function MText({ ...props }: React.ComponentProps<typeof Text>) {
   const { theme } = useTheme();
 
   return (
     <Text
-      style={[
-        { color: theme.color, fontFamily: "ZenMaruGothic-Regular", fontSize: 16 },
-        style
-      ]}
       {...props}
+      style={[styles.text, { color: theme.color }, props.style]}
     >
-      {children}
+      {props.children}
     </Text>
   );
 }

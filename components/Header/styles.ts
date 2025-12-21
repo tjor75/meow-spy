@@ -1,14 +1,12 @@
 import { StyleSheet } from "react-native";
-import { globalGaps } from "../../styles/globalColors";
+import { globalGaps } from "../../styles/globalGaps";
 
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: globalGaps.large,
     paddingVertical: 8,
-    width: '100%',
   },
 });
 

@@ -1,11 +1,12 @@
 import { Picker } from "@react-native-picker/picker";
 import useTheme from "../../../hooks/useTheme";
+import MPicker from "../MPicker";
 
 export default function ThemePicker() {
   const { themePreference, setThemePreference } = useTheme();
 
   return (
-    <Picker
+    <MPicker
       selectedValue={themePreference}
       onValueChange={(itemValue) => {
         setThemePreference(itemValue);
@@ -13,6 +14,6 @@ export default function ThemePicker() {
         <Picker.Item label="System" value={null} />
         <Picker.Item label="Light" value="light" />
         <Picker.Item label="Dark" value="dark" />
-    </Picker>
+    </MPicker>
   );
 }
