@@ -71,7 +71,6 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
         allowsFullscreen={true}
         allowsPictureInPicture={true}
         startsPictureInPictureAutomatically={true}
-        requiresLinearPlayback={true}
       />
       {error ? (
         <TouchableOpacity onPress={loadVideo} style={styles.overlay}>
