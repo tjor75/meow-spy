@@ -3,7 +3,7 @@ import { Feather } from "@expo/vector-icons";
 import useCatHouse from "../../../hooks/useCatHouse";
 import useTheme from "../../../hooks/useTheme";
 import useCatHousesGallery from "../../../hooks/useCatHousesGallery";
-import MButton from "../MButton";
+import MButton from "../../UI/MButton";
 import { globalColors } from "../../../styles/globalColors";
 
 export default function SaveButton() {

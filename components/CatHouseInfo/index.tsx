@@ -6,8 +6,8 @@ import MText from "../UI/MText";
 import LocalizedCurrentTime from "./LocalizedCurrentTime";
 import Viewers from "./Viewers";
 import FoodLevels from "./FoodLevels";
-// import ShareButton from "../UI/ShareButton";
-import SaveButton from "../UI/SaveButton";
+import ShareButton from "./Buttons/ShareButton";
+import SaveButton from "./Buttons/SaveButton";
 import styles from "./styles";
 
 export default function CatHouseInfo() {
@@ -19,6 +19,7 @@ export default function CatHouseInfo() {
         <View style={styles.row}>
           <MText style={styles.name}>{getNameFromCatHouse(catHouseDetails)}</MText>
           <View style={styles.rowRight}>
+            <ShareButton />
             <SaveButton />
           </View>
         </View>

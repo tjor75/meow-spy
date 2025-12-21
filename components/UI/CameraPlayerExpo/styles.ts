@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
   loadingText: {
     color: 'white',
     fontSize: 16,
+    textAlign: 'center',
   },
   overlay: {
     position: 'absolute',
@@ -46,6 +47,11 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'white',
     fontSize: 18,
+  },
+
+  thumbnail: {
+    width: '100%',
+    height: '100%',
   },
 });
 

@@ -24,7 +24,7 @@ export default function CameraChanger() {
             backgroundColor={cameraValue === camera ? globalColors.blue : undefined}
             style={styles.button}
           >
-            <MText style={cameraValue === camera ? { color: "#fff" } : undefined}>
+            <MText style={cameraValue === camera ? { color: globalColors.white } : undefined}>
               {cameraKey}
             </MText>
           </MButton>

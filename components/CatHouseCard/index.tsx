@@ -29,7 +29,7 @@ export default function CatHouseCard({ catHouse, buttonStyle, textStyle, goBack 
       <MText
         style={[
           { flex: 1, flexShrink: 1 },
-          catHouse.id === catHouseId ? { color: "#fff" } : undefined,
+          catHouse.id === catHouseId ? { color: globalColors.white } : undefined,
           textStyle,
         ]}
       >
@@ -37,7 +37,7 @@ export default function CatHouseCard({ catHouse, buttonStyle, textStyle, goBack 
       </MText>
       <MText
         style={[
-          catHouse.id === catHouseId ? { color: "#fff" } : undefined,
+          catHouse.id === catHouseId ? { color: globalColors.white } : undefined,
           styles.idText,
         ]}
       >

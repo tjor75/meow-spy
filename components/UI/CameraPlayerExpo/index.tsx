@@ -7,6 +7,7 @@ import { getCameraUrl } from "../../../lib/street-cat-pull";
 import useCatHouse from "../../../hooks/useCatHouse";
 import MText from "../MText";
 import styles from "./styles";
+import { globalColors } from "../../../styles/globalColors";
 
 export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean }) {
   const { catHouseId, catHouseDetails, camera, error, setError } = useCatHouse();
@@ -36,7 +37,9 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
   };
 
   useEffect(() => {
-    loadVideo();
+    if (catHouseId && cameraUrl) {
+      loadVideo();
+    }
   }, [cameraUrl]);
 
   useEffect(() => {
@@ -73,7 +76,7 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
       {error ? (
         <TouchableOpacity onPress={loadVideo} style={styles.overlay}>
           {catHouseDetails && (
-            <Feather name="refresh-ccw" size={24} color="white" />
+            <Feather name="refresh-ccw" size={24} color={globalColors.white} />
           )}
           <MText style={styles.errorText}>{error}</MText>
         </TouchableOpacity>
@@ -83,7 +86,7 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
             {catHouseDetails && catHouseDetails.images?.length > 0 ? (
               <Image
                 source={{ uri: catHouseDetails.images[0] }}
-                style={{ width: '100%', height: '100%' }}
+                style={styles.thumbnail}
                 resizeMode="cover"
               />
             ) : (
