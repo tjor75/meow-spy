@@ -37,7 +37,7 @@ export default function HomeScreen() {
       <View style={isLandscape ? styles.containerLandscape : styles.containerPortrait}>
         <CameraPlayerExpo isLandscape={isLandscape} />
         <ScrollContainer
-          style={isLandscape ? styles.sidebarLandscape : styles.sidebarPortrait}
+          style={isLandscape ? styles.sidebarLandscape : undefined}
         >
           <CatHouseInfo />
           <CatHousesSaved />

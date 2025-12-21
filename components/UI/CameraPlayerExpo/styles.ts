@@ -1,14 +1,13 @@
 import { StyleSheet } from "react-native";
+import { globalColors } from "../../../styles/globalColors";
 
 const styles = StyleSheet.create({
   cameraContainer: {
     position: 'relative',
-    backgroundColor: 'black',
-    //width: '100%',
-    //height: '100%',
+    backgroundColor: globalColors.black,
   },
   cameraContainerLandscape: {
-    flex: 2,
+    flex: 0.8,
   },
   cameraContainerPortrait: {
     height: 250,

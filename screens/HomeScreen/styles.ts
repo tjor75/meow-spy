@@ -22,10 +22,7 @@ const styles = StyleSheet.create({
   },
 
   sidebarLandscape: {
-    flex: 1,
-  },
-  sidebarPortrait: {
-    flex: 3,
+    flex: 0.2,
   },
 });
 

@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { globalColors } from "../../../styles/globalColors";
+import { globalColors } from "../../../../styles/globalColors";
 
 const styles = StyleSheet.create({
   jmpButton: { backgroundColor: globalColors.yellow },
