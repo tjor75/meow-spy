@@ -2,7 +2,7 @@
   "expo": {
     "name": "Meow Spy",
     "slug": "meow-spy",
-    "version": "1.0.0-alpha",
+    "version": "1.0.1-alpha",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "automatic",
