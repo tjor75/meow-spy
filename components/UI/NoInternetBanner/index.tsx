@@ -5,13 +5,11 @@ import MText from "../MText";
 import styles from "./styles";
 
 export default function NoInternetBanner() {
-  const { catHouseId, setCatHouseId } = useCatHouse();
+  const { reload } = useCatHouse();
   const netInfo = useNetInfo();
 
   useEffect(() => {
-    if (netInfo.isConnected && catHouseId !== "") {
-      setCatHouseId(catHouseId);
-    }
+    if (netInfo.isConnected) reload();
   }, [netInfo]);
 
   if (netInfo.isConnected) return null;

@@ -10,7 +10,7 @@ import styles from "./styles";
 import { globalColors } from "../../../styles/globalColors";
 
 export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean }) {
-  const { catHouseId, catHouseDetails, camera, error, setError } = useCatHouse();
+  const { catHouseId, catHouseDetails, camera, error, setError, reloadTrigger } = useCatHouse();
   const player = useVideoPlayer(null);
 
   console.log("Rendering CameraPlayerExpo with catHouseId:", catHouseId, "camera:", camera);
@@ -37,10 +37,8 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
   };
 
   useEffect(() => {
-    if (catHouseId && cameraUrl) {
-      loadVideo();
-    }
-  }, [cameraUrl]);
+    if (catHouseId && cameraUrl) loadVideo();
+  }, [cameraUrl, reloadTrigger]);
 
   useEffect(() => {
     console.log("Player status changed:", status, vidError);

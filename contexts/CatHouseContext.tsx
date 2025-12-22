@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import { CatHouseDetails, getCatHouseDetailsById } from "../lib/meow-camera";
+import { CatHouseDetails } from "../lib/meow-camera";
 import { Camera } from "../lib/street-cat-pull";
-import { getLastCatHouseId, setLastCatHouseId } from "../utils/cat-house";
+import { getLastCatHouseId } from "../utils/cat-house";
 
 type CatHouseContextType = {
   catHouseId: string;
@@ -12,6 +12,8 @@ type CatHouseContextType = {
   setCamera: (camera: Camera) => void;
   error: string | null;
   setError: (error: string | null) => void;
+  reloadTrigger: boolean;
+  reload: () => void;
 };
 
 export const CatHouseContext = createContext<CatHouseContextType>({
@@ -23,6 +25,8 @@ export const CatHouseContext = createContext<CatHouseContextType>({
   setCamera: () => {},
   error: null,
   setError: () => {},
+  reloadTrigger: false,
+  reload: () => {},
 });
 
 export function CatHouseProvider({ children }: { children: React.ReactNode }) {
@@ -30,49 +34,15 @@ export function CatHouseProvider({ children }: { children: React.ReactNode }) {
   const [catHouseDetails, setCatHouseDetails] = useState<CatHouseDetails | null>(null);
   const [camera, setCamera] = useState<Camera>(Camera.FRONT);
   const [error, setError] = useState<string | null>(null);
-
-  const reloadDetails = async () => {
-    if (catHouseId) {
-      const details = await getCatHouseDetailsById(catHouseId);
-
-      if (!details) {
-        setError("Failed to fetch cat house details.");
-        setCatHouseDetails(null);
-        return;
-      }
-
-      if (details && 'status' in details) {
-        setError(details.message);
-        setCatHouseDetails(null);
-        return;
-      }
-
-      setCatHouseDetails(details);
-    }
-  };
+  const [reloadTrigger, setReloadTrigger] = useState<boolean>(false);
 
   useEffect(() => {
     getLastCatHouseId().then(lastCatHouseId => setCatHouseId(lastCatHouseId));
   }, []);
 
-  useEffect(() => {
-    if (catHouseId === "") return;
-
-    let interval: NodeJS.Timeout | null = null;
-
-    setError(null);
-
-    if (catHouseId) {
-      setCamera(Camera.FRONT);
-      setLastCatHouseId(catHouseId);
-      reloadDetails();
-      interval = setInterval(reloadDetails, 60000);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [catHouseId]);
+  const reload = () => {
+    setReloadTrigger(prev => !prev);
+  };
 
   return (
     <CatHouseContext.Provider value={{
@@ -84,6 +54,8 @@ export function CatHouseProvider({ children }: { children: React.ReactNode }) {
       setCamera,
       error,
       setError,
+      reloadTrigger,
+      reload,
     }}>
       {children}
     </CatHouseContext.Provider>
