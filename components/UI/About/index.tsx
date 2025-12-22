@@ -15,7 +15,7 @@ export default function About() {
   return (
     <View>
       <MText style={styles.aboutText}>Meow Spy</MText>
-      <MText style={styles.aboutText}>Version Alpha 1.0.0</MText>
+      <MText style={styles.aboutText}>Version Alpha 1.0.1</MText>
       <MText style={styles.aboutText}>Powered by Meow.camera & Purrrr</MText>
       <View style={styles.lastRow}>
         <TouchableOpacity onPress={openWebsite}>
