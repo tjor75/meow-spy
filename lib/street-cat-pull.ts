@@ -1,4 +1,4 @@
-const BASE_URL = "http://streetcatpull.hellobike.com";
+const BASE_URL = "https://streetcatpull.hellobike.com";
 
 export enum Camera {
   FRONT = 0,
