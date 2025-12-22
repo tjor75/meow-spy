@@ -33,7 +33,7 @@ npm install -g eas-cli
 eas login
 
 # Configure your project (first time only)
-eas build: configure
+eas build:configure
 
 # Build for Android
 eas build --platform android
