@@ -84,6 +84,4 @@ Make sure you have:
 
 ---
 
-**Version**: Alpha 1.0.0
-
 ⭐ [Star on GitHub](https://github.com/tjor75/meow-spy) if you like this project!
