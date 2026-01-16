@@ -79,17 +79,20 @@ export default function CameraPlayerExpo({ isLandscape }: { isLandscape: boolean
         </TouchableOpacity>
       ) : (
         loading && (
-          <View style={styles.overlay}>
-            {catHouseDetails && catHouseDetails.images?.length > 0 ? (
-              <Image
-                source={{ uri: catHouseDetails.images[0] }}
-                style={styles.thumbnail}
-                resizeMode="cover"
-              />
-            ) : (
-              <ActivityIndicator size="large" />
+          <>
+            {catHouseDetails && catHouseDetails.images?.length > 0 && (
+              <View style={styles.overlay}>
+                <Image
+                  source={{ uri: catHouseDetails.images[0] }}
+                  style={styles.thumbnail}
+                  resizeMode="cover"
+                />
+              </View>
             )}
-          </View>
+            <View style={styles.overlay}>
+              <ActivityIndicator size="large" color={globalColors.white} />
+            </View>
+          </>
         )
       )}
     </View>
