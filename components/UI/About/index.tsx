@@ -21,7 +21,7 @@ export default function About() {
         <TouchableOpacity onPress={openWebsite}>
           <MText style={styles.aboutText}>App by Tjor</MText>
         </TouchableOpacity>
-        -
+        <MText>-</MText>
         <TouchableOpacity onPress={openRepository}>
           <MText style={styles.aboutText}>Star on GitHub</MText>
         </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { CatHouse, CatHouseDetails } from "../lib/meow-camera";
+import { CatHouse } from "../lib/meow-camera";
 import * as storage from "./storage";
 
 export const getLastCatHouseId = async (): Promise<string> => {
