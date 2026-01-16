@@ -13,6 +13,6 @@ export const getThemePreference = async (): Promise<ColorSchemeName> => {
   return await storage.getData("themePreference") as ColorSchemeName || null;
 };
 
-export const setThemePreference = async (preference: string): Promise<void> => {
-  await storage.setData("themePreference", preference);
+export const storeThemePreference = async (preference: ColorSchemeName): Promise<void> => {
+  await storage.setData("themePreference", preference ?? "");
 };

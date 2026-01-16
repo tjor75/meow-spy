@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
-import { CatHouse, getCatHouseDetailsById } from "../lib/meow-camera";
-import { getSavedCatHouses } from "../utils/cat-house";
+import { CatHouse } from "../lib/meow-camera";
+import { getSavedCatHouses, storeSavedCatHouses } from "../utils/cat-house";
 
 type CatHousesGalleryContextType = {
   catHousesSaved: CatHouse[] | null;
@@ -30,8 +30,10 @@ export function CatHousesGalleryProvider({ children }: { children: React.ReactNo
   useEffect(() => {
     if (catHousesSaved === null)
       getSavedCatHouses().then(savedCatHouses => setCatHousesSaved(savedCatHouses));
-    else
-      setCatHousesSaved(catHousesSaved);
+    else {
+      console.log(`Cat houses saved: ${catHousesSaved.map(ch => ch.id).join(", ")}`);
+      storeSavedCatHouses(catHousesSaved);
+    }
   }, [catHousesSaved]);
 
   return (

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { ColorSchemeName } from "react-native";
-import { getThemePreference, resolveColorScheme, resolveTheme } from "../utils/theme";
+import { getThemePreference, storeThemePreference, resolveColorScheme, resolveTheme } from "../utils/theme";
 import { themeColors } from "../styles/themeColors";
 
 export enum Theme {
@@ -23,15 +23,18 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [themePreference, setThemePreference] = useState<ColorSchemeName>(null);
+  const [themePreference, setThemePreference] = useState<ColorSchemeName>(undefined);
   const theme = resolveTheme(themePreference) === Theme.DARK ? themeColors.dark : themeColors.light;
   const colorScheme = resolveColorScheme() === Theme.DARK ? themeColors.dark : themeColors.light;
 
   console.log("Current theme preference:", themePreference);
 
   useEffect(() => {
-    getThemePreference().then(oldThemePreference => setThemePreference(oldThemePreference));
-  }, []);
+    if (themePreference === undefined)
+      getThemePreference().then(oldThemePreference => setThemePreference(oldThemePreference));
+    else
+      storeThemePreference(themePreference);
+  }, [themePreference]);
 
   return (
     <ThemeContext.Provider value={{ themePreference, setThemePreference, theme, colorScheme }}>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Feather } from "@expo/vector-icons";
-import { setLastCatHouseId } from "../../utils/cat-house";
+import { storeLastCatHouseId } from "../../utils/cat-house";
 import { Camera } from "../../lib/street-cat-pull";
 import { CatHouseType, getCatHouseDetailsById } from "../../lib/meow-camera";
 import useOrientationLock from "../../hooks/useOrientationLock";
@@ -54,7 +54,7 @@ export default function HomeScreen() {
 
     if (catHouseId) {
       setCamera(Camera.FRONT);
-      setLastCatHouseId(catHouseId);
+      storeLastCatHouseId(catHouseId);
       reloadDetails();
       interval = setInterval(reloadDetails, 60000);
     }

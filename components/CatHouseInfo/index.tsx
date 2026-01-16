@@ -13,24 +13,25 @@ import styles from "./styles";
 export default function CatHouseInfo() {
   const { catHouseDetails } = useCatHouse();
 
-  if (catHouseDetails)
-    return (
-      <View>
-        <View style={styles.row}>
-          <MText style={styles.name}>{getNameFromCatHouse(catHouseDetails)}</MText>
-          <View style={styles.rowRight}>
-            <ShareButton />
-            <SaveButton />
-          </View>
+  if (!catHouseDetails) return null;
+
+  return (
+    <View>
+      <View style={styles.row}>
+        <MText style={styles.name}>{getNameFromCatHouse(catHouseDetails)}</MText>
+        <View style={styles.rowRight}>
+          <ShareButton />
+          <SaveButton />
         </View>
-        <View style={styles.row}>
-          <LocalizedCurrentTime timeZone={catHouseDetails.timeZone} />
-          <View style={styles.rowRight}>
-            <FoodLevels catHouseDetails={catHouseDetails} />
-            <Viewers catHouseDetails={catHouseDetails} />
-          </View>
-        </View>
-        <CameraChanger />
       </View>
-    );
+      <View style={styles.row}>
+        <LocalizedCurrentTime timeZone={catHouseDetails.timeZone} />
+        <View style={styles.rowRight}>
+          <FoodLevels catHouseDetails={catHouseDetails} />
+          <Viewers catHouseDetails={catHouseDetails} />
+        </View>
+      </View>
+      <CameraChanger />
+    </View>
+  );
 }

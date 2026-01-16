@@ -5,7 +5,7 @@ export const getLastCatHouseId = async (): Promise<string> => {
   return await storage.getData("lastCatHouseId") ?? "4258783365322591678";
 };
 
-export const setLastCatHouseId = async (catHouseId: string): Promise<void> => {
+export const storeLastCatHouseId = async (catHouseId: string): Promise<void> => {
   await storage.setData("lastCatHouseId", catHouseId);
 };
 
@@ -19,6 +19,6 @@ export const getSavedCatHouses = async (): Promise<CatHouse[]> => {
   }
 };
 
-export const setSavedCatHouses = async (catHouses: CatHouse[]): Promise<void> => {
+export const storeSavedCatHouses = async (catHouses: CatHouse[]): Promise<void> => {
   await storage.setData("savedCatHouses", JSON.stringify(catHouses));
 };

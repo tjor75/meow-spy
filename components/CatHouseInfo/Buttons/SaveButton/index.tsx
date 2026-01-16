@@ -22,17 +22,13 @@ export default function SaveButton() {
       setCatHousesSaved([...catHousesSaved, catHouseDetails]);
   };
 
-  useEffect(() => {
-    console.log(`Cat houses saved: ${catHousesSaved.map(ch => ch.id).join(", ")}`);
-  }, [catHousesSaved]);
-
   return (
     <MButton
       onPress={toggleSaved}
       backgroundColor={isSaved ? globalColors.yellow : undefined}
       squared={true}
     >
-      <Feather name="star" size={20} color={isSaved ? globalColors.white : theme.color} />
+      <Feather name="star" size={20} color={isSaved ? globalColors.black : theme.color} />
     </MButton>
   );
 }
