@@ -10,19 +10,23 @@ type MModalProps = {
 
 export default function MModal({ children, visible, setVisible }: MModalProps) {
   const { theme } = useTheme();
-  const closeModal = () => { setVisible(false); };
+  const closeModal = () => {
+    setVisible(false);
+  };
 
   return (
-    <Modal
-      visible={visible}
-      animationType="slide"
-      transparent
-    >
-      <TouchableOpacity style={styles.backdrop} onPress={closeModal} activeOpacity={1}>
-        <View style={[
-          styles.container,
-          { backgroundColor: theme.altBackground },
-        ]}>
+    <Modal visible={visible} animationType="slide" transparent>
+      <TouchableOpacity
+        style={styles.backdrop}
+        onPress={closeModal}
+        activeOpacity={1}
+      >
+        <View
+          style={[
+            styles.container,
+            { backgroundColor: theme.altBackgroundColor },
+          ]}
+        >
           {children}
         </View>
       </TouchableOpacity>

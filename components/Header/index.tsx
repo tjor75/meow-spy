@@ -9,11 +9,21 @@ type HeaderProps = {
   goBack?: boolean;
 };
 
-export default function Header({ children, style, goBack = true }: HeaderProps) {
+export default function Header({
+  children,
+  style,
+  goBack = true,
+}: HeaderProps) {
   const { theme } = useTheme();
 
   return (
-    <View style={[styles.header, { backgroundColor: theme.altBackground }, style]}>
+    <View
+      style={[
+        styles.header,
+        { backgroundColor: theme.altBackgroundColor },
+        style,
+      ]}
+    >
       {goBack && <BackButton />}
       {children}
     </View>
