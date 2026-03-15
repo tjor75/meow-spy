@@ -13,35 +13,36 @@ import Screen from "../../components/UI/Screen";
 import ScrollContainer from "../../components/UI/ScrollContainer";
 import Header from "../../components/Header";
 import MText from "../../components/UI/MText";
-import CameraPlayerExpo from "../../components/UI/CameraPlayerExpo";
+import CameraPlayer from "../../components/CameraPlayer";
 import CatHouseInfo from "../../components/CatHouseInfo";
 import CatHousesSaved from "../../components/CatHouses/CatHousesSaved";
 import CatHousesType from "../../components/CatHouses/CatHousesType";
 import styles from "./styles";
 
-
 export default function HomeScreen() {
   const navigation = useNavigation();
   const isLandscape = useOrientationLock();
   const { theme } = useTheme();
-  const { catHouseId, setCatHouseDetails, setCamera, setError, reloadTrigger } = useCatHouse();
-  const { featuredCatHousesState, randomCatHousesState, topCatHousesState } = useCatHousesGallery();
+  const { catHouseId, setCatHouseDetails, setCamera, setError, reloadTrigger } =
+    useCatHouse();
+  const { featuredCatHousesState, randomCatHousesState, topCatHousesState } =
+    useCatHousesGallery();
 
   const reloadDetails = async () => {
     const details = await getCatHouseDetailsById(catHouseId);
-  
+
     if (!details) {
       setError("Failed to fetch cat house details.");
       setCatHouseDetails(null);
       return;
     }
-  
-    if (details && 'status' in details) {
+
+    if (details && "status" in details) {
       setError(details.message);
       setCatHouseDetails(null);
       return;
     }
-  
+
     setCatHouseDetails(details);
   };
 
@@ -66,7 +67,7 @@ export default function HomeScreen() {
 
   return (
     <Screen>
-      <Header style={{ justifyContent: 'space-between' }} goBack={false}>
+      <Header style={{ justifyContent: "space-between" }} goBack={false}>
         <MText style={styles.headerText}>Meow Spy</MText>
         <View style={styles.headerIcons}>
           <TouchableOpacity onPress={() => navigation.navigate("Search")}>
@@ -77,8 +78,12 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
       </Header>
-      <View style={isLandscape ? styles.containerLandscape : styles.containerPortrait}>
-        <CameraPlayerExpo isLandscape={isLandscape} />
+      <View
+        style={
+          isLandscape ? styles.containerLandscape : styles.containerPortrait
+        }
+      >
+        <CameraPlayer isLandscape={isLandscape} />
         <ScrollContainer
           style={isLandscape ? styles.sidebarLandscape : undefined}
         >
